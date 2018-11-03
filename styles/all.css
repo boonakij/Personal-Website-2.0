@@ -434,18 +434,152 @@ html, body {
   top: 0px;
   left: 0px;
   width: 100%;
+  padding: 30px 0px;
 }
 
 #projects-details-container {
   flex: 2;
-  border: 1px solid black;
-  height: 1600px;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  /* background-color: rgb(45, 45, 45); */
+  /* border: 2px solid rgb(45, 45, 45); */
+  /* border-radius: 20px; */
+  /* height: 1600px; */
 }
+
+#projects-details-container-inner {
+  padding: 50px 20px;
+  margin: 50px 20px;
+  box-shadow: 0px 1.5px 2px 0px rgba(45, 45, 45, 0.5);
+  background-color: white;
+  border-radius: 50px;
+  flex: auto;
+}
+
+#projects-details-title {
+  font-family: "Lato";
+  font-size: 56px;
+  color: black;
+  text-align: center;
+  /* font-weight: bold; */
+}
+
+#projects-details-tagline {
+  font-family: "Lato";
+  font-size: 20px;
+  color: rgb(95, 95, 95);
+  font-style: italic;
+  text-align: center;
+}
+
+#projects-details-laptop {
+  position: relative;
+  width: 80%;
+  /* max-height: 100%; */
+  padding-bottom: 46%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../images/laptop-outline.png');
+  /* border: 1px solid black; */
+  margin: auto;
+  margin-top: 30px;
+}
+
+#projects-details-laptop-screen {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76%;
+  padding-bottom: 48%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../images/project-preview/give-grow.png');
+  /* border: 1px solid black; */
+}
+
+#projects-details-phone {
+  position: relative;
+  width: 30%;
+  /* max-height: 100%; */
+  padding-bottom: 60.82%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../images/phone-outline-3.png');
+  /* border: 1px solid black; */
+  margin: auto;
+  margin-top: 30px;
+}
+
+#projects-details-phone-screen {
+  position: absolute;
+  top: 11%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 87%;
+  padding-bottom: 155%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../images/project-screens/cue.jpg');
+  /* border: 1px solid black; */
+}
+
+#projects-details-links-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+#projects-details-description {
+  margin: 40px 10%;
+  font-family: "Lato";
+  font-size: 16px;
+  color: rgb(95, 95, 95);
+}
+
+.projects-link-button-github {
+  transition: 0.3s all;
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid black;
+  margin: 0px 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../images/github-logo.png');
+}
+
+.projects-link-button-devpost {
+  transition: 0.3s all;
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid black;
+  margin: 0px 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-image: url('../images/devpost-logo.png');
+}
+
+.projects-link-button-github:hover, .projects-link-button-devpost:hover {
+  border: 2px solid rgb(32, 141, 222);
+}
+
 
 #projects-list-scroll-up {
   transition: 0.3s all;
   position: absolute;
-  z-index: 1;
+  z-index: 10;
   bottom: 0px;
   left: 0px;
   width: 100%;
@@ -454,12 +588,13 @@ html, body {
   color: white;
   background-color: rgb(45, 45, 45);
   opacity: 0.4;
+  display: block;
 }
 
 #projects-list-scroll-down {
   transition: 0.3s all;
   position: absolute;
-  z-index: 1;
+  z-index: 10;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -469,6 +604,7 @@ html, body {
   color: white;
   background-color: rgb(45, 45, 45);
   opacity: 0.4;
+  display: none;
 }
 
 #projects-list-scroll-up:hover, #projects-list-scroll-down:hover {
@@ -476,17 +612,38 @@ html, body {
   opacity: 0.8;
 }
 
+#projects-list-focused-arrow {
+  display: block;
+  position: absolute;
+  top: 65px;
+  right: 0px;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid rgb(45, 45, 45);
+}
+
 .projects-list-item {
+  transition: 0.3s all;
   position: relative;
   display: block;
   min-height: 100px;
   margin: 10px 10px;
   padding-top: 10px;
+  padding-bottom: 10px;
   padding-right: 10px;
   margin-left: 5px;
   box-sizing: border-box;
   box-shadow: 0px 1.5px 2px 0px rgba(45, 45, 45, 0.5);
   background-color: white;
+}
+
+.projects-list-item:hover {
+  cursor: pointer;
+  transform: translateY(-5px);
+  box-shadow: 0px 3px 5px 0px rgba(45, 45, 45, 0.5);
 }
 
 .projects-list-item-image {
@@ -496,7 +653,11 @@ html, body {
   display: block;
   top: 10px;
   left: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../images/project-preview/cue.png');
 }
 
 .projects-list-item-title {
@@ -507,7 +668,15 @@ html, body {
 
 .projects-list-item-date {
   font-family: "Lato";
-  font-size: 16px;
+  font-size: 14px;
+  margin-left: 100px;
+  font-weight: normal;
+  color: rgb(95, 95, 95);
+}
+
+.projects-list-item-description {
+  font-family: "Lato";
+  font-size: 14px;
   margin-left: 100px;
   font-weight: normal;
   color: rgb(95, 95, 95);
@@ -587,6 +756,14 @@ html, body {
 
 .icon-mobile {
   background-image: url("../images/mobile-icon.png");
+}
+
+.category-hackathon {
+  background-color: rgb(254, 237, 88);
+}
+
+.icon-hackathon {
+  background-image: url("../images/programming-icon.png");
 }
 
 #contact-container {

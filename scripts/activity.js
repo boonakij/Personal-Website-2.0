@@ -76,9 +76,10 @@ $(document).ready(function(){
     bottomVal = parseInt(bottomVal.slice(0, bottomVal.indexOf('px')));
     if (bottomVal < 0) {
       var topVal = $('#projects-list-container-inner').css('top');
-      var newTopVal = parseInt(topVal.slice(0, topVal.indexOf('px'))) - 1;
+      var newTopVal = parseInt(topVal.slice(0, topVal.indexOf('px'))) - 2;
       var newTopValStr = newTopVal + 'px';
       $('#projects-list-container-inner').css('top', newTopValStr);
+      checkScrollArrowsNeeded();
     }
   }
 
@@ -87,9 +88,29 @@ $(document).ready(function(){
     topVal = parseInt(topVal.slice(0, topVal.indexOf('px')));
     if (topVal < 0) {
       topVal = $('#projects-list-container-inner').css('top');
-      var newTopVal = parseInt(topVal.slice(0, topVal.indexOf('px'))) + 1;
+      var newTopVal = parseInt(topVal.slice(0, topVal.indexOf('px'))) + 2;
       var newTopValStr = newTopVal + 'px';
       $('#projects-list-container-inner').css('top', newTopValStr);
+    }
+    checkScrollArrowsNeeded();
+  }
+
+  function checkScrollArrowsNeeded() {
+    var topVal = $('#projects-list-container-inner').css('top');
+    topVal = parseInt(topVal.slice(0, topVal.indexOf('px')));
+    if (topVal < 0) {
+      $('#projects-list-scroll-down').show();
+    }
+    else {
+      $('#projects-list-scroll-down').hide();
+    }
+    var bottomVal = $('#projects-list-container-inner').css('bottom');
+    bottomVal = parseInt(bottomVal.slice(0, bottomVal.indexOf('px')));
+    if (bottomVal < 0) {
+      $('#projects-list-scroll-up').show();
+    }
+    else {
+      $('#projects-list-scroll-up').hide();
     }
   }
 
@@ -178,6 +199,7 @@ $(document).ready(function(){
             $('#projects-list-container-inner').css('top', topValStr);
           }
         }
+        checkScrollArrowsNeeded();
       });
     }
   });
@@ -204,12 +226,33 @@ $(document).ready(function(){
             $('#projects-list-container-inner').css('top', '0px');
           }
         }
+        checkScrollArrowsNeeded();
       });
     }
+  });
+
+  $('.projects-list-item').click(function() {
+    var newTop = $(this).position().top + $(this).height()/2;
+    $('#projects-list-focused-arrow').stop(true,true).animate({
+      top: newTop,
+    }, 200);
+    $("#projects-details-container-swappable").stop(true, true).fadeOut("slow", function() {
+        // $('#projects-details-container-inner').html('<object type="text/html" data="projects/give-grow.html"></object>');
+        $('#projects-details-container-inner').load("projects/give-grow.html #projects-details-container-swappable");
+        $("#projects-details-container-swappable").fadeIn("slow");
+      });
   });
 
   // setInterval(function() {scrollProjectsListUp()}, 100)
   // $('#projects-container').html('<object type="text/html" data="test.html"></object>');
 
   /*** End projects scrolling functionality ***/
+
+  /*** Run on ready ***/
+
+  $('.projects-list-item-image[data-img-path]').each(function(){
+    $(this).css('background-image', "url('images/project-preview/" + $(this).data('imgPath') + "')");
+  });
+
+
 });
