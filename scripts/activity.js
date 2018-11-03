@@ -116,6 +116,15 @@ $(document).ready(function(){
 
   /*** End projects scrolling functionality ***/
 
+
+  /*** Projects functionality ***/
+
+  function isVideo(fileStr) {
+    ext = fileStr.slice(fileStr.indexOf('.')+1);
+    return (ext.trim() === "mp4");
+  }
+
+
   $(window).scroll(function(){
     landingParallax();
     updateNavTracker(getMostVisible($('.section-container')));
@@ -233,12 +242,35 @@ $(document).ready(function(){
 
   $('.projects-list-item').click(function() {
     var newTop = $(this).position().top + $(this).height()/2;
+    var fileName = $(this).data('file');
     $('#projects-list-focused-arrow').stop(true,true).animate({
       top: newTop,
     }, 200);
     $("#projects-details-container-swappable").stop(true, true).fadeOut("slow", function() {
         // $('#projects-details-container-inner').html('<object type="text/html" data="projects/give-grow.html"></object>');
-        $('#projects-details-container-inner').load("projects/give-grow.html #projects-details-container-swappable");
+        // $('#projects-details-container-inner').load("projects/give-grow.html #projects-details-container-swappable");
+        $('#projects-details-container-inner').load("projects/" + fileName + " #projects-details-container-swappable", function() {
+          $('#projects-details-phone-screen[data-img-list]').each(function(){
+            if (isVideo($(this).data('imgList')[0])) {
+              $("#projects-details-phone-video").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
+              $("#projects-details-phone-video").show();
+            }
+            else {
+              $(this).css('background-image', "url('images/project-screens/" + $(this).data('imgList')[0] + "')");
+              $("#projects-details-phone-video").hide();
+            }
+          });
+          $('#projects-details-laptop-screen[data-img-list]').each(function(){
+            if (isVideo($(this).data('imgList')[0])) {
+              $("#projects-details-phone-video").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
+              $("#projects-details-phone-video").show();
+            }
+            else {
+              $(this).css('background-image', "url('images/project-screens/" + $(this).data('imgList')[0] + "')");
+              $("#projects-details-phone-video").hide();
+            }
+          });
+        });
         $("#projects-details-container-swappable").fadeIn("slow");
       });
   });
@@ -254,5 +286,26 @@ $(document).ready(function(){
     $(this).css('background-image', "url('images/project-preview/" + $(this).data('imgPath') + "')");
   });
 
+  $('#projects-details-phone-screen[data-img-list]').each(function(){
+    if (isVideo($(this).data('imgList')[0])) {
+      $("#projects-details-phone-video").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
+      $("#projects-details-phone-video").show();
+    }
+    else {
+      $(this).css('background-image', "url('images/project-screens/" + $(this).data('imgList')[0] + "')");
+      $("#projects-details-phone-video").hide();
+    }
+  });
+
+  $('#projects-details-laptop-screen[data-img-list]').each(function(){
+    if (isVideo($(this).data('imgList')[0])) {
+      $("#projects-details-phone-video").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
+      $("#projects-details-phone-video").show();
+    }
+    else {
+      $(this).css('background-image', "url('images/project-screens/" + $(this).data('imgList')[0] + "')");
+      $("#projects-details-phone-video").hide();
+    }
+  });
 
 });

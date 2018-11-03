@@ -1,0 +1,24 @@
+<div id="projects-details-container-swappable">
+  <div id="projects-details-title">Dog Breed Detector</div>
+  <div id="projects-details-links-container">
+  </div>
+  <div id="projects-details-phone">
+    <div id="projects-details-phone-screen" data-img-list='["dog-breed-detector.mp4"]'>
+      <video id="projects-details-phone-video" autoplay muted loop controls>
+         <source src="images/project-screens/dog-breed-detector.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <div id="projects-details-description">
+    <p>
+    This Android app scans a dog in view of the phone's camera and determines
+    its best guesses as to what the dog's breed is. When a dog is determined to
+    be in the camera's view, a series of 10 "scans" are taken, where each scan
+    results in the model returning the probability that the dog is of each breed.
+    When the 10 scans are completed the scores are averaged and the user can view
+    the top few guesses for the dog's breed. The app was made in Android Studio and
+    uses a Tensorflow implementation of the Mobilenet model that was trained
+    with the Stanford Dogs Dataset. It thus has the capacity to distinguish 120 dog breeds.
+    </p>
+  </div>
+</div>
