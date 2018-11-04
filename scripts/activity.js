@@ -243,6 +243,9 @@ $(document).ready(function(){
   $('.projects-list-item').click(function() {
     var newTop = $(this).position().top + $(this).height()/2;
     var fileName = $(this).data('file');
+    $('html, body').animate({
+        scrollTop: $('#projects-container').offset().top
+    }, 'slow');
     $('#projects-list-focused-arrow').stop(true,true).animate({
       top: newTop,
     }, 200);
@@ -260,16 +263,27 @@ $(document).ready(function(){
               $("#projects-details-phone-video").hide();
             }
           });
-          $('#projects-details-laptop-screen[data-img-list]').each(function(){
+          $('#projects-details-phone-screen-horizontal[data-img-list]').each(function(){
             if (isVideo($(this).data('imgList')[0])) {
-              $("#projects-details-phone-video").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
-              $("#projects-details-phone-video").show();
+              $("#projects-details-phone-video-horizontal").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
+              $("#projects-details-phone-video-horizontal").show();
             }
             else {
               $(this).css('background-image', "url('images/project-screens/" + $(this).data('imgList')[0] + "')");
-              $("#projects-details-phone-video").hide();
+              $("#projects-details-phone-video-horizontal").hide();
             }
           });
+          $('#projects-details-laptop-screen[data-img-list]').each(function(){
+            if (isVideo($(this).data('imgList')[0])) {
+              $("#projects-details-laptop-video").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
+              $("#projects-details-laptop-video").show();
+            }
+            else {
+              $(this).css('background-image', "url('images/project-screens/" + $(this).data('imgList')[0] + "')");
+              $("#projects-details-laptop-video").hide();
+            }
+          });
+
         });
         $("#projects-details-container-swappable").fadeIn("slow");
       });
@@ -297,14 +311,25 @@ $(document).ready(function(){
     }
   });
 
-  $('#projects-details-laptop-screen[data-img-list]').each(function(){
+  $('#projects-details-phone-screen-horizontal[data-img-list]').each(function(){
     if (isVideo($(this).data('imgList')[0])) {
-      $("#projects-details-phone-video").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
-      $("#projects-details-phone-video").show();
+      $("#projects-details-phone-video-horizontal").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
+      $("#projects-details-phone-video-horizontal").show();
     }
     else {
       $(this).css('background-image', "url('images/project-screens/" + $(this).data('imgList')[0] + "')");
-      $("#projects-details-phone-video").hide();
+      $("#projects-details-phone-video-horizontal").hide();
+    }
+  });
+
+  $('#projects-details-laptop-screen[data-img-list]').each(function(){
+    if (isVideo($(this).data('imgList')[0])) {
+      $("#projects-details-laptop-video").attr('src', "images/project-screens/" + $(this).data('imgList')[0]);
+      $("#projects-details-laptop-video").show();
+    }
+    else {
+      $(this).css('background-image', "url('images/project-screens/" + $(this).data('imgList')[0] + "')");
+      $("#projects-details-laptop-video").hide();
     }
   });
 
